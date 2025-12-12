@@ -2,21 +2,20 @@
 
 ## Overview
 
-This guide explains how to maintain, update, and keep the Zoho documentation current. It's designed for maintainers and contributors who need to update documentation as Zoho's APIs evolve.
+This guide explains how to maintain, update, and keep the Zoho documentation current. It's designed for maintainers who need to update documentation as Zoho's APIs evolve.
 
 ---
 
 ## Table of Contents
 
 1. [Maintenance Workflow](#maintenance-workflow)
-2. [Automated Update Checking](#automated-update-checking)
-3. [Manual Update Process](#manual-update-process)
-4. [Adding New Products](#adding-new-products)
-5. [Updating Existing Products](#updating-existing-products)
-6. [Deluge Updates](#deluge-updates)
-7. [Quality Checklist](#quality-checklist)
-8. [Version Control](#version-control)
-9. [Troubleshooting](#troubleshooting)
+2. [Manual Update Process](#manual-update-process)
+3. [Adding New Products](#adding-new-products)
+4. [Updating Existing Products](#updating-existing-products)
+5. [Deluge Updates](#deluge-updates)
+6. [Quality Checklist](#quality-checklist)
+7. [Version Control](#version-control)
+8. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -25,7 +24,7 @@ This guide explains how to maintain, update, and keep the Zoho documentation cur
 ### Regular Schedule
 
 ```
-Monthly → Run automated checker on core products
+Monthly → Check core products for updates
           ↓
 Quarterly → Full review of assigned product set
           ↓
@@ -36,19 +35,17 @@ Annually → Complete documentation audit
 
 **Time Required**: 30-45 minutes
 
+**Core Products to Check**:
+- CRM, Books, Desk (most commonly used)
+- Analytics, Projects, Creator
+- Any products recently updated by Zoho
+
 **Steps**:
-1. Run automated update checker
-   ```bash
-   check-updates.bat crm books desk analytics projects
-   ```
-
-2. Review generated report
-
-3. Update any products flagged as outdated
-
-4. Update `UPDATE-TRACKER.md` with any changes
-
-5. Commit changes with descriptive message
+1. Visit Zoho Developer Portal for each product
+2. Check API version and compare with local docs
+3. Note any version changes or new features
+4. Update documentation as needed
+5. Update `UPDATE-TRACKER.md` with changes
 
 ### Quarterly Maintenance (First Week of Quarter)
 
@@ -60,26 +57,21 @@ Annually → Complete documentation audit
 **Q4 (December)**: Products 40-51 + Full Audit
 
 **Steps**:
-1. Run full automated check
-   ```bash
-   check-updates.bat --full-report
-   ```
-
-2. Review Zoho changelog for assigned products
+1. Review Zoho changelog for assigned products
    - Visit each product's API documentation
    - Check for version changes
    - Note new features/deprecations
 
-3. Update documentation systematically
+2. Update documentation systematically
    - One product at a time
    - Follow update checklist below
 
-4. Update `UPDATE-TRACKER.md`
+3. Update `UPDATE-TRACKER.md`
    - Mark products as reviewed
    - Note any upcoming changes
    - Set next review date
 
-5. Test all code examples
+4. Test all code examples
    - Verify JavaScript examples
    - Verify Python examples
    - Verify Deluge examples
@@ -94,137 +86,69 @@ Annually → Complete documentation audit
 3. Test all code examples
 4. Verify all links work
 5. Update all rate limits
-6. Refresh all screenshots (if any)
-7. Update version numbers
-8. Review and update guides
-9. Review and update quick references
-
----
-
-## Automated Update Checking
-
-### Setup
-
-Ensure you have the required tools:
-
-```bash
-# Check Node.js installation
-node --version
-
-# Check Playwright installation
-npm list playwright
-```
-
-If missing:
-```bash
-npm install playwright
-```
-
-### Running the Checker
-
-#### Basic Usage
-
-```bash
-# Windows - Check all products
-check-updates.bat
-
-# Windows - Check specific products
-check-updates.bat crm books desk
-
-# Windows - Generate detailed report
-check-updates.bat --full-report
-
-# Windows - Check Deluge docs
-check-updates.bat --deluge
-```
-
-#### Advanced Usage
-
-```bash
-# Node.js direct (cross-platform)
-node update-zoho-docs.js
-
-# Check multiple specific products
-node update-zoho-docs.js crm books desk analytics projects
-
-# Check with detailed output
-node update-zoho-docs.js --full-report
-
-# Check everything including Deluge
-node update-zoho-docs.js --deluge --full-report
-```
-
-### Understanding the Output
-
-#### Console Output
-
-```
-Checking crm...
-✓ crm: Up to date
-  Remote: v8 | December 2025
-  Local:  v8 | December 2025
-
-Checking books...
-⚠ books: UPDATE NEEDED - Version mismatch: Remote v3.1 vs Local v3.0
-  Remote: v3.1 | January 2026
-  Local:  v3.0 | December 2025
-```
-
-#### Report File
-
-Generated as `update-report-YYYY-MM-DD.md`:
-- Summary statistics
-- Products needing updates with reasons
-- Up-to-date products
-- Errors/inaccessible products
-- Next steps and action items
-
-### Interpreting Results
-
-| Status | Meaning | Action |
-|--------|---------|--------|
-| ✅ Up to date | Local docs match remote | No action needed |
-| ⚠️ Needs update | Version mismatch or missing info | Update documentation |
-| ❌ Error | Can't access documentation | Check URL or authentication |
+6. Update version numbers
+7. Review and update guides
+8. Review and update quick references
 
 ---
 
 ## Manual Update Process
 
-### When to Update Manually
+### When to Update
 
-1. Automated checker flags a product
-2. Zoho announces API changes
-3. You discover outdated information
-4. New features are released
-5. Breaking changes announced
+1. Zoho announces API changes
+2. You discover outdated information
+3. New features are released
+4. Breaking changes announced
+5. Monthly/quarterly review schedule
 
 ### Step-by-Step Update Process
 
-#### 1. Prepare
+#### 1. Identify What Needs Updating
+
+**Sources to Monitor**:
+- [Zoho Developer Portal](https://www.zoho.com/developer/) - Main API documentation
+- [Zoho Blog](https://www.zoho.com/blog/) - Feature announcements
+- [API Console](https://api-console.zoho.com/) - Live API testing
+- [Zoho Status Page](https://status.zoho.com/) - Service updates
+
+**What to Look For**:
+- API version changes (v7 → v8)
+- New endpoints or features
+- Deprecated endpoints
+- Rate limit changes
+- Authentication changes
+- Data format changes
+
+#### 2. Prepare for Update
 
 ```bash
 # Navigate to project directory
 cd C:\Users\jswee\Documents\GitHub\ZohoProgrammingDocs
 
-# Run checker for the product
-check-updates.bat [product-name]
-
 # Open the product documentation
 code zoho-docs/api-reference/[product-name]/README.md
 ```
 
-#### 2. Research
+#### 3. Research the Changes
 
 Visit the official Zoho documentation:
-- Find the product's API documentation URL
 - Read through all sections
 - Note version changes
 - Identify new features
 - Check for deprecations
 - Review rate limit changes
+- Save example responses
 
-#### 3. Update Documentation
+**Key URLs by Product**:
+- CRM: https://www.zoho.com/crm/developer/docs/api/
+- Books: https://www.zoho.com/books/api/v3/
+- Desk: https://desk.zoho.com/DeskAPIDocument
+- Creator: https://www.zoho.com/creator/help/api/
+- Analytics: https://www.zoho.com/analytics/api/
+- [See full list in README.md]
+
+#### 4. Update Documentation
 
 **Update Header Section**:
 ```markdown
@@ -232,7 +156,7 @@ Visit the official Zoho documentation:
 
 **Current API Version**: v8  ← Update if changed
 **Base URL**: `https://www.zohoapis.com/crm/v8/`  ← Update if changed
-**Last Updated**: December 2025  ← Update to current month
+**Last Updated**: January 2026  ← Update to current month
 ```
 
 **Update Rate Limits**:
@@ -245,7 +169,7 @@ Visit the official Zoho documentation:
 
 **Add New Features**:
 ```markdown
-### New in v8.1
+### What's New in v8.1
 
 - Blueprint API for approval workflows
 - Enhanced COQL with JOIN support
@@ -267,7 +191,7 @@ const response = await axios.get(
 > Migrate to v8 by following the [migration guide](#migration-guide).
 ```
 
-#### 4. Test Examples
+#### 5. Test Examples
 
 Create a test file to verify examples work:
 
@@ -280,14 +204,14 @@ const testCRMExample = async () => {
 };
 ```
 
-#### 5. Update Cross-References
+#### 6. Update Cross-References
 
 Check if changes affect other files:
 - Update guides if authentication changed
 - Update quick reference if endpoints changed
 - Update Deluge docs if Zoho built-in functions changed
 
-#### 6. Update Metadata
+#### 7. Update Metadata
 
 Update the file's footer:
 ```markdown
@@ -297,7 +221,7 @@ Update the file's footer:
 **API Version**: v8.1  ← Current version
 ```
 
-#### 7. Update Tracker
+#### 8. Update Tracker
 
 Edit `zoho-docs/UPDATE-TRACKER.md`:
 ```markdown
@@ -405,17 +329,7 @@ Edit `zoho-docs/README.md`:
 - [Product Name](./api-reference/[product-name]/README.md) - Brief description
 ```
 
-#### 4. Add to Update Checker
-
-Edit `update-zoho-docs.js`:
-```javascript
-const ZOHO_PRODUCTS = {
-  // ... existing products
-  'new-product': 'https://www.zoho.com/new-product/api/',
-};
-```
-
-#### 5. Add to Update Tracker
+#### 4. Add to Update Tracker
 
 Edit `zoho-docs/UPDATE-TRACKER.md`:
 ```markdown
@@ -426,7 +340,7 @@ Edit `zoho-docs/UPDATE-TRACKER.md`:
 
 ## Updating Existing Products
 
-### Version Updates (e.g., v7 → v8)
+### Version Updates
 
 #### Minor Version Updates (v8.0 → v8.1)
 
@@ -548,15 +462,15 @@ When Zoho adds new built-in functions:
 Reverses a string.
 
 **Syntax**:
-\`\`\`javascript
+```javascript
 result = stringReverse(string);
-\`\`\`
+```
 
 **Example**:
-\`\`\`javascript
+```javascript
 reversed = stringReverse("hello");
 // Result: "olleh"
-\`\`\`
+```
 ```
 
 #### 2. Increased Limitations
@@ -729,40 +643,17 @@ git push origin update-crm-v8.1
 
 ### Common Issues
 
-#### Issue 1: Update Checker Can't Access Documentation
+#### Issue 1: Can't Find Official Documentation
 
-**Symptoms**: Error message "Could not access [product] documentation"
-
-**Solutions**:
-1. Check if URL is correct in `ZOHO_PRODUCTS` object
-2. Check if documentation requires authentication
-3. Try accessing URL manually in browser
-4. Check if Zoho changed their documentation structure
-
-**Fix**:
-```javascript
-// Update URL in update-zoho-docs.js
-const ZOHO_PRODUCTS = {
-  'product': 'https://new-url.zoho.com/product/api/',  // Updated URL
-};
-```
-
-#### Issue 2: Version Mismatch False Positives
-
-**Symptoms**: Checker says version mismatch but documentation is current
+**Symptoms**: Can't locate the API documentation for a product
 
 **Solutions**:
-1. Check version number format (v8 vs 8 vs v8.0)
-2. Ensure version in local docs matches Zoho's format
-3. Update version detection regex if needed
+1. Check [Zoho Developer Portal](https://www.zoho.com/developer/)
+2. Google: "Zoho [Product] API documentation"
+3. Check product's help section: `https://www.zoho.com/[product]/help/api/`
+4. Try API console: `https://api-console.zoho.com/`
 
-**Fix**:
-```markdown
-<!-- In local documentation, standardize version format -->
-**Current API Version**: v8  <!-- Use this format consistently -->
-```
-
-#### Issue 3: Code Examples Not Working
+#### Issue 2: Code Examples Not Working
 
 **Symptoms**: Examples return errors when tested
 
@@ -786,7 +677,7 @@ const testExample = async () => {
 };
 ```
 
-#### Issue 4: Links Broken After Update
+#### Issue 3: Links Broken After Update
 
 **Symptoms**: Internal links return 404
 
@@ -803,40 +694,19 @@ const testExample = async () => {
 [Authentication](/zoho-docs/api-reference/crm/authentication.md)  <!-- Absolute -->
 ```
 
-#### Issue 5: Playwright Installation Issues
+#### Issue 4: Version Number Confusion
 
-**Symptoms**: Update checker fails with "playwright not found"
+**Symptoms**: Multiple version numbers listed, unclear which is current
 
 **Solutions**:
-```bash
-# Reinstall Playwright
-npm install playwright
-
-# Install browsers
-npx playwright install
-
-# Or use the batch script which checks automatically
-check-updates.bat
-```
+1. Check official Zoho documentation header
+2. Test an API call to see which version responds
+3. Use API console to verify
+4. Standardize format in local docs (use "v8" format)
 
 ---
 
 ## Quick Reference Commands
-
-### Update Checking
-```bash
-# Check all products
-check-updates.bat
-
-# Check specific products
-check-updates.bat crm books desk
-
-# Full report
-check-updates.bat --full-report
-
-# Check Deluge
-check-updates.bat --deluge
-```
 
 ### File Locations
 ```
@@ -857,7 +727,6 @@ Quick Reference:
 
 Trackers:
   zoho-docs/UPDATE-TRACKER.md
-  update-report-YYYY-MM-DD.md (generated)
 ```
 
 ### Important URLs
@@ -879,12 +748,12 @@ Zoho Status Page:
 
 ## Best Practices Summary
 
-1. **Run automated checks monthly** for frequently used products
+1. **Check official docs monthly** for frequently used products (CRM, Books, Desk, Creator)
 2. **Follow quarterly review schedule** systematically
 3. **Test all code examples** before committing
 4. **Update tracker file** every time you update documentation
 5. **Use descriptive commit messages** for version control
-6. **Monitor Zoho announcements** for API changes
+6. **Monitor Zoho announcements** for API changes (blog, forums, status page)
 7. **Keep examples current** with latest API versions
 8. **Document deprecations** clearly with timelines
 9. **Maintain consistent formatting** across all files
@@ -899,13 +768,13 @@ Zoho Status Page:
 - API Console: https://api-console.zoho.com/
 - Forums: https://help.zoho.com/portal/en/community/
 - Support: support@zoho.com
+- Blog: https://www.zoho.com/blog/
 
 ### Documentation Repository
 - Location: `C:\Users\jswee\Documents\GitHub\ZohoProgrammingDocs`
-- Update Script: `update-zoho-docs.js`
-- Batch Script: `check-updates.bat`
+- GitHub: https://github.com/DrJoeSweeney/ZohoProgrammingDocs
 
 ---
 
 **Last Updated**: December 2025
-**Maintenance Guide Version**: 1.0
+**Maintenance Guide Version**: 2.0
