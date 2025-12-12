@@ -22,7 +22,9 @@
       "Bash(ls:*)",
       "Bash(find:*)",
       "Bash(gh:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)"
     ]
   }
 }

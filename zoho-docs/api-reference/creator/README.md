@@ -1,3 +1,17 @@
+---
+type: api_reference
+product: zoho_creator
+api_version: v2.1
+last_updated: 2025-01-15
+complexity: intermediate
+auth_required: OAuth 2.0
+rate_limit_daily: 5000-100000
+common_use_cases: ["custom_apps", "database_operations", "workflow_automation", "zcql_queries"]
+quick_start_available: true
+ai_optimized: true
+supports_deluge: true
+---
+
 # Zoho Creator API Reference
 
 ## Overview
@@ -9,6 +23,55 @@ Zoho Creator is a low-code application development platform that enables busines
 **Protocol**: REST
 **Data Format**: JSON, XML
 **Authentication**: OAuth 2.0
+
+---
+
+## ⚡ Quick Start
+
+### Jump to Common Operations
+
+| Operation | Time | Difficulty | Link |
+|-----------|------|------------|------|
+| Add Record | 3 min | ⚡ Easy | [→](#add-record) |
+| Get Records | 2 min | ⚡ Easy | [→](#get-records) |
+| Update Record | 3 min | ⚡ Easy | [→](#update-record) |
+| Delete Record | 2 min | ⚡ Easy | [→](#delete-record) |
+| ZCQL Query | 4 min | 🔧 Medium | [→](#zcql-queries) |
+| Upload File | 5 min | 🔧 Medium | [→](#file-upload-api) |
+
+### 60-Second Start
+
+```javascript
+// 1. Get access token from OAuth
+const accessToken = 'YOUR_ACCESS_TOKEN';
+
+// 2. Add your first record
+const axios = require('axios');
+const response = await axios.post(
+  'https://creator.zoho.com/api/v2/account_owner/app_link_name/form/form_link_name',
+  {
+    data: {
+      Customer_Name: 'John Smith',
+      Email: 'john@example.com',
+      Status: 'Active'
+    }
+  },
+  { headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` } }
+);
+console.log('Record created:', response.data.data.ID);
+```
+
+[Need OAuth token? → 60-second OAuth setup](../../guides/authentication/README.md#self-client-quickest-for-scripts) | [More examples →](../../QUICK-START.md#8-creator-add-record-3-minutes)
+
+### Related Documentation
+
+- 🔐 [Authentication Guide](../../guides/authentication/README.md) - OAuth 2.0 complete setup
+- ⚡ [Quick Start Guide](../../QUICK-START.md) - Copy-paste examples for all products
+- 📊 [Rate Limits Guide](../../guides/rate-limits/README.md) - Creator: 5,000-100,000 calls/day
+- 🔧 [Error Handling Guide](../../guides/error-handling/README.md) - Common errors and solutions
+- 🔗 [Integration Patterns](../../guides/integration-patterns/README.md) - Creator integration hub
+- 📘 [API Cheat Sheet](../../quick-reference/api-cheatsheet.md) - Quick syntax reference
+- 📝 [Deluge Reference](../../deluge/README.md) - Creator scripting language
 
 ---
 

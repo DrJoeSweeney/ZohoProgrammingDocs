@@ -2,6 +2,24 @@
 
 This comprehensive documentation covers the entire Zoho ecosystem including all product APIs and the Deluge programming language. Optimized for AI-assisted code generation.
 
+---
+
+## ⚡ **[START HERE: Quick Start Guide](./QUICK-START.md)**
+
+**Get coding in 5 minutes** with copy-paste ready examples for the 10 most common Zoho operations:
+- 🔐 Get OAuth Token (60 seconds)
+- 📝 Create CRM Lead / Contact / Deal
+- 🧾 Create Books Invoice
+- 🎫 Create Desk Ticket
+- 🗄️ Creator: Add/Query Records
+- 📧 Send Email via Deluge
+- 🔄 Auto-refresh Token Pattern
+- ⚠️ Common Errors & Quick Fixes
+
+**[→ View Quick Start Guide](./QUICK-START.md)**
+
+---
+
 ## Quick Navigation
 
 ### 📚 [API Reference](./api-reference/README.md)

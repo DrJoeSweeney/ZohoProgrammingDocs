@@ -1,3 +1,17 @@
+---
+type: api_reference
+product: zoho_desk
+api_version: v1
+last_updated: 2025-01-15
+complexity: intermediate
+auth_required: OAuth 2.0
+rate_limit_daily: 2000-50000
+common_use_cases: ["ticket_management", "customer_support", "helpdesk_automation", "sla_tracking"]
+quick_start_available: true
+ai_optimized: true
+requires_org_id: true
+---
+
 # Zoho Desk API Reference
 
 ## Overview
@@ -9,6 +23,60 @@ Zoho Desk is a comprehensive help desk and customer support platform that enable
 **Protocol**: REST
 **Data Format**: JSON
 **Authentication**: OAuth 2.0
+
+---
+
+## ⚡ Quick Start
+
+### Jump to Common Operations
+
+| Operation | Time | Difficulty | Link |
+|-----------|------|------------|------|
+| Create Ticket | 3 min | ⚡ Easy | [→](#create-ticket) |
+| Get Tickets | 2 min | ⚡ Easy | [→](#get-tickets) |
+| Update Ticket | 2 min | ⚡ Easy | [→](#update-ticket) |
+| Add Comment | 3 min | ⚡ Easy | [→](#add-comment) |
+| Create Contact | 2 min | ⚡ Easy | [→](#create-contact) |
+| Assign Ticket | 3 min | 🔧 Medium | [→](#assign-ticket) |
+| Setup Webhook | 15 min | 🚀 Advanced | [→](#webhooks) |
+
+### 60-Second Start
+
+```javascript
+// 1. Get access token from OAuth + your orgId
+const accessToken = 'YOUR_ACCESS_TOKEN';
+const orgId = 'YOUR_ORG_ID'; // Required for all Desk API calls
+
+// 2. Create your first ticket
+const axios = require('axios');
+const response = await axios.post(
+  'https://desk.zoho.com/api/v1/tickets',
+  {
+    contactId: 'CONTACT_ID',
+    subject: 'Need help with login',
+    description: 'Customer unable to access account',
+    departmentId: 'DEPARTMENT_ID',
+    priority: 'High',
+    status: 'Open'
+  },
+  {
+    params: { orgId },
+    headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` }
+  }
+);
+console.log('Ticket created:', response.data.id);
+```
+
+[Need OAuth token? → 60-second OAuth setup](../../guides/authentication/README.md#self-client-quickest-for-scripts) | [More examples →](../../QUICK-START.md#7-create-desk-ticket-3-minutes)
+
+### Related Documentation
+
+- 🔐 [Authentication Guide](../../guides/authentication/README.md) - OAuth 2.0 complete setup
+- ⚡ [Quick Start Guide](../../QUICK-START.md) - Copy-paste examples for all products
+- 📊 [Rate Limits Guide](../../guides/rate-limits/README.md) - Desk: 2,000-50,000 calls/day
+- 🔧 [Error Handling Guide](../../guides/error-handling/README.md) - Common errors and solutions
+- 🔗 [Integration Patterns](../../guides/integration-patterns/README.md) - CRM + Desk integration
+- 📘 [API Cheat Sheet](../../quick-reference/api-cheatsheet.md) - Quick syntax reference
 
 ---
 

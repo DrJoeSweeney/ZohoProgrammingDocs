@@ -1,3 +1,17 @@
+---
+type: api_reference
+product: zoho_books
+api_version: v3
+last_updated: 2025-01-15
+complexity: intermediate
+auth_required: OAuth 2.0
+rate_limit_daily: 2500-50000
+common_use_cases: ["invoicing", "accounting", "expense_tracking", "financial_reports"]
+quick_start_available: true
+ai_optimized: true
+requires_org_id: true
+---
+
 # Zoho Books API Reference
 
 ## Overview
@@ -9,6 +23,55 @@ Zoho Books is a comprehensive cloud-based accounting software that helps busines
 **Protocol**: REST
 **Data Format**: JSON
 **Authentication**: OAuth 2.0
+
+---
+
+## ⚡ Quick Start
+
+### Jump to Common Operations
+
+| Operation | Time | Difficulty | Link |
+|-----------|------|------------|------|
+| Create Invoice | 3 min | ⚡ Easy | [→](#create-invoice) |
+| Create Customer | 2 min | ⚡ Easy | [→](#create-contact) |
+| Get Invoices | 2 min | ⚡ Easy | [→](#get-invoices) |
+| Record Payment | 3 min | 🔧 Medium | [→](#record-payment) |
+| Create Bill | 3 min | ⚡ Easy | [→](#create-bill) |
+| Get Items | 2 min | ⚡ Easy | [→](#get-items) |
+
+### 60-Second Start
+
+```javascript
+// 1. Get access token from OAuth + your organization_id
+const accessToken = 'YOUR_ACCESS_TOKEN';
+const orgId = 'YOUR_ORG_ID'; // Required for all Books API calls
+
+// 2. Create your first invoice
+const axios = require('axios');
+const response = await axios.post(
+  'https://www.zohoapis.com/books/v3/invoices',
+  {
+    customer_id: 'CUSTOMER_ID',
+    line_items: [{ item_id: 'ITEM_ID', quantity: 1, rate: 100 }]
+  },
+  {
+    params: { organization_id: orgId },
+    headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` }
+  }
+);
+console.log('Invoice created:', response.data.invoice.invoice_id);
+```
+
+[Need OAuth token? → 60-second OAuth setup](../../guides/authentication/README.md#self-client-quickest-for-scripts) | [More examples →](../../QUICK-START.md#6-create-books-invoice-3-minutes)
+
+### Related Documentation
+
+- 🔐 [Authentication Guide](../../guides/authentication/README.md) - OAuth 2.0 complete setup
+- ⚡ [Quick Start Guide](../../QUICK-START.md) - Copy-paste examples for all products
+- 📊 [Rate Limits Guide](../../guides/rate-limits/README.md) - Books: 2,500-50,000 calls/day
+- 🔧 [Error Handling Guide](../../guides/error-handling/README.md) - Common errors and solutions
+- 🔗 [Integration Patterns](../../guides/integration-patterns/README.md) - CRM + Books integration
+- 📘 [API Cheat Sheet](../../quick-reference/api-cheatsheet.md) - Quick syntax reference
 
 ---
 

@@ -1,3 +1,16 @@
+---
+type: api_reference
+product: zoho_crm
+api_version: v8
+last_updated: 2025-01-15
+complexity: intermediate
+auth_required: OAuth 2.0
+rate_limit_daily: 5000-100000
+common_use_cases: ["lead_management", "contact_sync", "deal_tracking", "sales_automation"]
+quick_start_available: true
+ai_optimized: true
+---
+
 # Zoho CRM API Reference
 
 ## Overview
@@ -9,6 +22,50 @@ Zoho CRM is the centerpiece of Zoho's ecosystem, providing comprehensive custome
 **Protocol**: REST
 **Data Format**: JSON
 **Authentication**: OAuth 2.0
+
+---
+
+## ⚡ Quick Start
+
+### Jump to Common Operations
+
+| Operation | Time | Difficulty | Link |
+|-----------|------|------------|------|
+| Get All Leads | 2 min | ⚡ Easy | [→](#get-records) |
+| Create Lead | 2 min | ⚡ Easy | [→](#create-lead) |
+| Update Lead | 2 min | ⚡ Easy | [→](#update-record) |
+| Search Records | 3 min | 🔧 Medium | [→](#search-records) |
+| Get Related Records | 3 min | 🔧 Medium | [→](#related-records) |
+| Bulk Operations | 10 min | 🚀 Advanced | [→](#bulk-apis) |
+| Setup Webhook | 15 min | 🚀 Advanced | [→](#webhooks) |
+| COQL Query | 5 min | 🔧 Medium | [→](#coql-query) |
+
+### 60-Second Start
+
+```javascript
+// 1. Get access token from OAuth (see authentication guide)
+const accessToken = 'YOUR_ACCESS_TOKEN';
+
+// 2. Create your first lead
+const axios = require('axios');
+const response = await axios.post(
+  'https://www.zohoapis.com/crm/v8/Leads',
+  { data: [{ Last_Name: 'Smith', Company: 'Acme Corp', Email: 'smith@acme.com' }] },
+  { headers: { 'Authorization': `Zoho-oauthtoken ${accessToken}` } }
+);
+console.log('Lead created:', response.data.data[0].details.id);
+```
+
+[Need OAuth token? → 60-second OAuth setup](../../guides/authentication/README.md#self-client-quickest-for-scripts) | [More examples →](../../QUICK-START.md#2-create-crm-lead-2-minutes)
+
+### Related Documentation
+
+- 🔐 [Authentication Guide](../../guides/authentication/README.md) - OAuth 2.0 complete setup
+- ⚡ [Quick Start Guide](../../QUICK-START.md) - Copy-paste examples for all products
+- 📊 [Rate Limits Guide](../../guides/rate-limits/README.md) - CRM: 5,000-100,000 calls/day
+- 🔧 [Error Handling Guide](../../guides/error-handling/README.md) - Common errors and solutions
+- 🔗 [Integration Patterns](../../guides/integration-patterns/README.md) - Multi-product workflows
+- 📘 [API Cheat Sheet](../../quick-reference/api-cheatsheet.md) - Quick syntax reference
 
 ---
 
